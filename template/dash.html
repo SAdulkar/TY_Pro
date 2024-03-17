@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee List</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"/>
+    <link rel = "stylesheet" type = "text/css" href = "https://cdn.datatables.net/1.12.0/css/jquery.dataTables.min.css"/>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1"/>
+</head>
+<body>
+    <table class="table table-striped table bordered table-sm">
+    <thead class="thead-dark">
+    <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+    </tr>
+    </thead>
+    {% for employees in employee %}
+    <tr>
+        <td>{{employees.username}}</td>
+        <td>{{employees.last_name}}</td>
+        <td>{{employees.email}}</td>
+        <td><a href="/edit/{{ employees.id }}" class="btn btn-primary">Edit</a></td>
+        <td><a href="/delete/{{ employees.id }}" class="btn btn-danger">Delete</a></td>  
+    </tr>  
+{% endfor %}
+    </table>
+</body>
+</html>

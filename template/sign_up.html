@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Design by foolishdeveloper.com -->
+    <title>Signup Page</title>
+ 
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Custom Stylesheet -->
+    <style>
+        /* Your custom styles here */
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        {% if msg %}
+        <div class="alert alert-danger d-flex align-items-center" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+            <div>
+              {{msg}}
+            </div>
+          </div>
+          {% endif %}
+        <!-- <div class="background">
+            <div class="shape"></div>
+            <div class="shape"></div>
+        </div> -->
+        <form action="" method="post">
+            {% csrf_token %} 
+            <h3>Signup Here</h3>
+    
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" placeholder="Username" name="username" id="username" required>
+            </div>
+
+            <div class="form-group">
+                <label for="last_name">Last Name</label>
+                <input type="text" class="form-control" placeholder="Last Name" name="last_name" id="last_name" required>
+            </div>
+    
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" placeholder="Email or Phone" name="email" id="email" required>
+            </div>
+            <div class="d-flex justify-content-evenly">
+                <div class="div">
+                    <label for="password1">Password</label>
+                    <input type="password" class="form-control" placeholder="Password" id="password1" name="password1" required>
+                </div>
+                <div class="div">
+                    <label for="password2">Confirm Password</label>
+                    <input type="password" class="form-control" placeholder="Confirm Password" id="password2" name="password2" required>
+                </div>
+                
+            </div>
+            
+            
+            <button type="submit" class="btn btn-primary">Signup</button>
+            
+            <a href="/employee/login" class="btn btn-link">I already have an account</a>
+        </form>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
