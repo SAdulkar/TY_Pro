@@ -6,10 +6,19 @@
     <title>Edit Employee</title>
 </head>
 <body>
-    <h5>Edit employee</h5>
+    <h5>Edit employee Details</h5>
 
     {% for x in employee %}
-        <p>Name : {{x.username}}</p>
+        <label>Employee Name:</label>  
+        <input type="text" class="form-control" name="username" required maxlength="20" value="{{ x.username }}"/>   
+        
+        <label>Employee Last Name:</label>  
+        <input type="text" class="form-control" name="last_name" required maxlength="20" value="{{ x.last_name }}"/>
+
+        <label>Email:</label>  
+        <input type="email" class="form-control" name="email" required maxlength="254" value="{{ x.email }}" />
+
+        <button type="submit" class="btn btn-success btn-lg"><a href="/hr/dash">Update</a> </button> 
     {% endfor %}
     
 </body>
