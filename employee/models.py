@@ -11,11 +11,3 @@ class Employee(models.Model):
     # position = models.CharField(max_length=100)
 
 #add extra fields
-    
-class LeaveRequest(models.Model):
-    """username = models.CharField(Employee, on_delete=models.CASCADE)
-    leave_date = models.CharField(max_length=255)
-    reason = models.TextField()
-    leave_status = models.IntegerField(default=0)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now_add=True)"""

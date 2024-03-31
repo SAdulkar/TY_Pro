@@ -3,11 +3,9 @@ from django.urls import path,include
 from employee import views
 
 urlpatterns = [
-    path('about/',views.about,name='about'),
-    path('contact/',views.contact,name='contact'),
-    path('signup/',views.signup,name='signup'),
     path('login/',views.login,name='login'),
-    path('emp_dash/',views.emp_dash,name='emp_dash'),
-    path('leave_req/',views.leave_req,name='leave_req'),
+    path('signup/',views.signup,name='signup'),
     path('regi/',views.regi,name='regi'),
+    path('dash/',views.dash,name='dash'),
+    path('delete/<int:id>',views.delete, name='delete'),
 ]

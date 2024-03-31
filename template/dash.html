@@ -22,8 +22,8 @@
         <td>{{employees.username}}</td>
         <td>{{employees.last_name}}</td>
         <td>{{employees.email}}</td>
-        <td><a href="/hr/edit/?id={{ employees.id }}" class="btn btn-primary">Edit</a></td>
-        <td><a href="/hr/delete/?id={{ employees.id }}" class="btn btn-danger">Delete</a></td>  
+        <td><a href="/edit/{{ employees.id }}" class="btn btn-primary">Edit</a></td>
+        <td><a href="/delete/{{ employees.id }}" class="btn btn-danger">Delete</a></td>  
     </tr>  
 {% endfor %}
     </table>
