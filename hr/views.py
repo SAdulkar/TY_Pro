@@ -35,7 +35,7 @@ def admin_login(request):
 
 def dash(request):
      employee=Employee.objects.all()
-     return render(request,'admin_login.html',{'employee':employee})
+     return render(request,'dash.html',{'employee':employee})
 
 def edit_employee(request):
     id = request.GET.get('id')

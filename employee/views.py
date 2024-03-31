@@ -1,13 +1,9 @@
 from django.shortcuts import render,HttpResponse,redirect
 from employee.models import Employee
-from employee.models import LeaveRequest
 from django.core.mail import BadHeaderError, send_mail
-from django.contrib import messages
-from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from hashlib import sha256
-from django.http import HttpResponse, HttpResponseRedirect
-from datetime import datetime
+from django.http import HttpResponse
 
 
 def index(request):
@@ -27,12 +23,6 @@ def index(request):
       return render(request,'index.html',context)
    return render(request,'index.html')
 
-def about(request):
-   return render(request,'about.html')
-
-def contact(request):
-   return render(request,'contact.html')
-
 def login(request):
     # cookie = request.COOKIES.get('login') 
     # print('cookie',cookie)
@@ -43,7 +33,7 @@ def login(request):
        print(username,password)
        emp_obj = Employee.objects.filter(email=username,password=sha256(password.encode('utf-8')).hexdigest())
        if len(emp_obj)==1:
-          response = redirect('emp_dash')
+          response = redirect('/')
           response.set_cookie('login', 'true')
           response.set_cookie('username', username)
           return response
@@ -96,41 +86,13 @@ def signup(request):
 def regi(request):
    return render(request,'regi.html')
 
-def emp_dash(request):
-   """cookie = request.COOKIES.get('login') 
-   print('cookie',cookie)
-   username = request.POST.get('username')
-   password = request.POST.get('password')
-   print(username,password)
-   emp_obj = Employee.objects.filter(email=username,password=password)
-   if len(emp_obj)==1:
-      response = redirect('emp_dash')
-      response.set_cookie('login', 'true')
-      response.set_cookie('username', username)
-      return response"""
-   
-   return render(request,'emp_dash.html')
+def dash(request):
+     employee=Employee.objects.all()
+     return render(request,'dash.html',{'employee':employee})
 
+def delete(request): 
+    id=request.POSt.get('id') 
+    employee = Employee.objects.get(id=id)  
+    employee.delete()  
+    return redirect("/dash")  
 
-def leave_req(request):
-   emp_obj = Employee.objects.get(admin=request.user.id)
-   leave_data=LeaveRequest.objects.filter(username=emp_obj)
-
-   return render(request, 'leave_req.html')
-
-def leave_req_save(request):
-    if request.method!="POST":
-        return HttpResponseRedirect(reverse("leave_req"))
-    else:
-        leave_date=request.POST.get("leave_date")
-        reason=request.POST.get("reason")
-
-        emp_obj=Employee.objects.get(admin=request.user.id)
-        try:
-            leave_report=LeaveRequest(username=emp_obj,leave_date=leave_date,reason=reason,leave_status=0)
-            leave_report.save()
-            messages.success(request, "Successfully Applied for Leave")
-            return HttpResponseRedirect(reverse("emp_dash"))
-        except:
-            messages.error(request, "Failed To Apply for Leave")
-            return HttpResponseRedirect(reverse("leave_req"))
