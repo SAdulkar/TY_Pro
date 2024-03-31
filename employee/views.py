@@ -1,27 +1,51 @@
 from django.shortcuts import render,HttpResponse,redirect
 from employee.models import Employee
+from employee.models import LeaveRequest
 from django.core.mail import BadHeaderError, send_mail
+from django.contrib import messages
+from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from hashlib import sha256
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
+from datetime import datetime
 
+def logout(request):
+   try:
+      response = redirect('/')
+      response.delete_cookie('login')
+      response.delete_cookie('username')
+      return response
+   except:
+      print('logout failed')
+      pass
+   return render(request,'index.html')
 
 def index(request):
    cookie = request.COOKIES.get('login') 
-   if 'logout' in request.POST:
-      print('loging out')
-      response = redirect('/')
-      response.set_cookie('login', 'false')
-      response.set_cookie('username', None)
-      return response
+   
+   # if 'logout' in request.POST:
+   #    print('loging out')
+   #    response = redirect('/')
+   #    response.set_cookie('login', 'false')
+   #    response.set_cookie('username', None)
+   #    return response
    if cookie=='true':
-      emp_obj = Employee.objects.get(email = request.COOKIES.get('username'))
-
-      context = {
+      try:
+         emp_obj = Employee.objects.get(email = request.COOKIES.get('username'))
+         context = {
          'name':emp_obj.username
-      }
-      return render(request,'index.html',context)
+         }
+         return render(request,'index.html',context)
+
+      except:
+         pass
    return render(request,'index.html')
+
+def about(request):
+   return render(request,'about.html')
+
+def contact(request):
+   return render(request,'contact.html')
 
 def login(request):
     # cookie = request.COOKIES.get('login') 
@@ -33,7 +57,7 @@ def login(request):
        print(username,password)
        emp_obj = Employee.objects.filter(email=username,password=sha256(password.encode('utf-8')).hexdigest())
        if len(emp_obj)==1:
-          response = redirect('/')
+          response = redirect('emp_dash')
           response.set_cookie('login', 'true')
           response.set_cookie('username', username)
           return response
@@ -86,13 +110,50 @@ def signup(request):
 def regi(request):
    return render(request,'regi.html')
 
-def dash(request):
-     employee=Employee.objects.all()
-     return render(request,'dash.html',{'employee':employee})
+def emp_dash(request):
+   cookie = request.COOKIES.get('username') 
+   print('cookie',cookie)
+   
+   try:
+      emp_obj = Employee.objects.get(email=cookie)
+   except Exception as e:
+      print(e)
+   context = {
+      'name':f"{emp_obj.username} {emp_obj.last_name}"
+   }
+   
+   return render(request,'emp_dash.html',context)
 
-def delete(request): 
-    id=request.POSt.get('id') 
-    employee = Employee.objects.get(id=id)  
-    employee.delete()  
-    return redirect("/dash")  
 
+def leave_req(request):
+   cookie = request.COOKIES.get('username') 
+   if request.method=='POST':
+      start_date = request.POST.get('start_date')
+      end_date = request.POST.get('end_date')
+      reason = request.POST.get('reason')
+      
+      try:
+         reque = LeaveRequest(username=cookie,leave_date_from=start_date,leave_date_to=end_date,reason=reason,leave_status=None)
+         reque.save()
+         return render(request, 'leave_req.html',{'msg':'Your leave request send succefully...'})
+      except Exception as e:
+         print(e)   
+   
+   return render(request, 'leave_req.html',{'name':cookie})
+
+def leave_req_save(request):
+    if request.method!="POST":
+        return HttpResponseRedirect(reverse("leave_req"))
+    else:
+        leave_date=request.POST.get("leave_date")
+        reason=request.POST.get("reason")
+
+        emp_obj=Employee.objects.get(admin=request.user.id)
+        try:
+            leave_report=LeaveRequest(username=emp_obj,leave_date=leave_date,reason=reason,leave_status=0)
+            leave_report.save()
+            messages.success(request, "Successfully Applied for Leave")
+            return HttpResponseRedirect(reverse("emp_dash"))
+        except:
+            messages.error(request, "Failed To Apply for Leave")
+            return HttpResponseRedirect(reverse("leave_req"))

@@ -4,6 +4,7 @@ from employee.models import Employee
 from django.contrib import messages
 from hr.models import Hr
 from django.http import HttpResponse
+from employee.models import LeaveRequest
 from employee.serializers import EmployeeSerializer
 # Create your views here.
 def login(request):
@@ -35,7 +36,7 @@ def admin_login(request):
 
 def dash(request):
      employee=Employee.objects.all()
-     return render(request,'dash.html',{'employee':employee})
+     return render(request,'admin_login.html',{'employee':employee})
 
 def edit_employee(request):
     id = request.GET.get('id')
@@ -49,3 +50,12 @@ def delete(request):
      employee=Employee.objects.get(id=id)
      employee.delete()
      return redirect("/hr/admin_login")
+
+def leavepending(request):
+    leave = LeaveRequest.objects.all().order_by('-id')
+    return render(request,'leavepending.html',{'leave':leave})  
+
+def update_status(request):
+    
+    pass
+
