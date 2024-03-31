@@ -2,9 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Employee List</title>
+    <title>Employee Dashboard</title>
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"/>
     <link rel = "stylesheet" type = "text/css" href = "https://cdn.datatables.net/1.12.0/css/jquery.dataTables.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1"/>
@@ -92,11 +91,9 @@ body{
 .header h2{
   color: black;
 }
-.main-content img{
-  width: 50px;
-  height: 50px;
-  cursor: pointer;
-  border-radius: 50%;
+.main-content p{
+  color: black;
+  
 }
 .tabular-data{
   background: #fff;
@@ -104,12 +101,7 @@ body{
   border-radius: 10px;
   padding: 2rem;
 }
-.tabular-data h3{
-  color: black;
-}
-.table-content{
-  width: 100%;
-}
+
 </style>
 <body>
     <div class="sidebar">
@@ -123,15 +115,15 @@ body{
            </li> 
 
            <li>
-            <a href="#">
+            <a href="/employee/">
                 <i class="fas fa-tachometer-alt"></i>
                 <span>Salary</span>
             </a>
            </li> 
 
            <li>
-            <a href="#">
-                <i class="fas fa-tachometer-alt"></i>
+            <a href="/employee/leave_req">
+              <i class="fas fa-tachometer-alt"></i>
                 <span>Leave</span>
             </a>
            </li> 
@@ -140,33 +132,14 @@ body{
     <div class="main-content">
         <div class="header">
             <h2>Dashboard</h2>
-            <img src="{% static 'images/logo.png' %}">
-        </div>
 
-        <div class="tabular-data">
-            <h3>Employee's Data</h3>
-            <div class="table-content">
-                <table class="table table-bordered">
-                    <thead class="thead-dark">
-                    <tr>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Email</th>
-                        <th>Action</th>
-                    </tr>
-                    </thead>
-                    {% for employees in employee %}
-                    <tr>
-                        <td>{{employees.username}}</td>
-                        <td>{{employees.last_name}}</td>
-                        <td>{{employees.email}}</td>
-                        <td><a href="/hr/edit/?id={{ employees.id }}" class="btn btn-primary">Edit</a>
-                        <a href="/hr/delete/?id={{ employees.id }}" class="btn btn-danger">Delete</a></td>  
-                    </tr>  
-                {% endfor %}
-                    </table>
-            </div>
+            {% if name %}
+            <p>Hiii {{name}}</p>
+            {% endif %}
+
         </div>
+        
+        
     </div>
 </body>
 </html>

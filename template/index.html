@@ -1,183 +1,116 @@
 <!DOCTYPE html>
-<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Employee</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>EPS</title>
     {% load static %}
-    
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"/>
-    
-    
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <style>
-    *{
-        margin: 0;
-        padding: 0;
-    }
-    
-    .main{
-        width: 100%;
-        background: linear-gradient(to top, rgba(0,0,0,0.5)50%,rgba(0,0,0,0.5)50%);
-        height: 100vh;
-    }
-    
-    .navbar{
-        width: 1200px;
-        height: 75px;
-        margin: auto;
-    }
-    
-    .logo{
-        color: #ff7200;
-        font-size: 35px;
-        font-family: Arial;
-        padding-left: 20px;
-        float: left;
-        padding-top: 10px;
-        margin-top: 5px
-    }
-    
-    .menu{
-        width: 400px;
-        float: left;
-        height: 70px;
-    }
-    
-    ul{
-        float: left;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    
-    ul li{
-        list-style: none;
-        margin-left: 62px;
-        margin-top: 27px;
-        font-size: 14px;
-    }
-    
-    ul li a{
-        text-decoration: none;
-        color: #fff;
-        font-family: Arial;
-        font-weight: bold;
-        transition: 0.4s ease-in-out;
-    }
-    ul li p{
-        text-decoration: none;
-        color: #fff;
-        font-family: Arial;
-        font-weight: bold;
-        transition: 0.4s ease-in-out;
-    }
-    
-    ul li a:hover{
-        color: #ff7200;
-    }
-    
-    .content{
-        width: 1200px;
-        height: auto;
-        margin: auto;
-        color: #fff;
-        position: relative;
-    }
-    
-    .content .par{
-        padding-left: 20px;
-        padding-bottom: 25px;
-        font-family: Arial;
-        letter-spacing: 1.2px;
-        line-height: 30px;
-    }
-    
-    .content h1{
-        font-family: 'Times New Roman';
-        font-size: 50px;
-        padding-left: 20px;
-        margin-top: 9%;
-        letter-spacing: 2px;
-    }
-    
-    .content .cn{
-        width: 160px;
-        height: 40px;
-        background: #ff7200;
-        border: none;
-        margin-bottom: 10px;
-        margin-left: 20px;
-        font-size: 18px;
-        border-radius: 10px;
-        cursor: pointer;
-        transition: .4s ease;
-        
-    }
-    
-    .content .cn a{
-        text-decoration: none;
-        color: #000;
-        transition: .3s ease;
-    }
-    
-    .cn:hover{
-        background-color: #fff;
-    }
-    
-    .content span{
-        color: #25201b;
-        font-size: 55px
-    }
-    .btn{
-        background-color: transparent;
-        border: 1px solid black;
-        border-radius: 10%;
-        width:100px ;
-        height: 36px;
-    }
-    </style>
+    @import url('https://fonts.googleapis.com/css?family=Montserrat:500');
 
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: "Montserrat" sans-serif;
+}
+
+nav{
+    background: rgba(113, 99, 186, 255);
+    height: 80px;
+    width: 100%;
+}
+
+label.logo{
+    color: #fff;
+    font-size: 35px;
+    line-height: 80px;
+    padding: 0 100px;
+    font-weight: bold;
+}
+
+nav ul{
+    float: right;
+    margin-right: 20px
+}
+
+nav ul li{
+    display: inline-block;
+    padding: 0px 20px;
+    line-height: 80px;
+    margin: 0 5x;
+}
+
+nav ul li a{
+    color: #fff;
+    font-size: 17px;
+    padding: 7px 13px;
+    border-radius: 3px;
+    text-transform: uppercase;
+}
+
+a.active,a:hover{
+    background: #686399;
+}
+
+.content{
+    margin-top: 14%;
+    color: black;
+    max-width: 620px;
+    padding: 0 100px;
+}
+.content h1{
+    font-size: 50px;
+    font-weight: bold;    
+    margin-top: 10px;
+}
+.content p{
+    font-size: 30px;
+    font-weight: regular;
+    margin-top: 10px;
+
+}
+.image{
+    flex: 1;
+    width: 600px;
+    margin-right: 100%;
+    
+}
+img{
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+</style>
 <body>
-   <form action="" method="post">
-   {% csrf_token %} 
-    <div class="main">
-        <div class="navbar">
-            <div class>
-                <h2 class="logo">PayRoll</h2>
-            </div>
-
-            <div class="menu">
-                <ul>
-                    <li><a href="">HOME</a></li>
-                    <li><a href="">ABOUT</a></li>
-                    <li><a href="">ADMIN</a></li>
-                    <li><a href="">CONTACT</a></li>
-                    {% if name %}
-                    <li><p>Hello ! {{name}}</p></li>
-                    <li><button type="submit" class="btn" name="logout" value="logout">Logout</button></li>
-                    
-                    <form method="get">
-                        <li><a href="/employee/regi">Registration</a></li>
-                    </form>
-                    {% else %}
-                        <li><a href="/employee/login">Login</a></li>
-                        <li><a href="/employee/signup">SignUp</a></li>
-                        <li><a href="/employee/dash">DashBoard</a></li>
-                    {% endif %}
-                   
-                </ul>
-            </div>
+    <form action="" method="post">
+        {% csrf_token %} 
+        <nav>
+            <label class="logo">EMP</label>
             
-        </div> 
+                <ul >
+                    <li><a class="active" href="">HOME</a></li>
+                    <li><a href="/employee/about">ABOUT</a></li>
+                    <li><a href="/employee/contact">CONTACT</a></li>
+                    <li><a href="/employee/login">Login</a></li>
+                    <li><a href="/employee/signup">SignUp</a></li>
+                    
+                </ul>
+        </nav>
         <div class="content">
-            <h1>Effortlessly<br><span>manage your global employee</span> <br>Data</h1>
-            <p class="par">Build a secure, comprehensive, and scalable database to get a better<br>  understanding of your workforce
-                <br></p>
-                   
+            <h1>Effortlessly<br><span>manage your global employee</span> Data</h1>
+            <p>Build a secure, comprehensive, and scalable database to get a <br>better understanding of your workforce
+            <br></p>   
+        </div>
+        <div class="image">
+            <img src="{% static 'images/emp.png' %}">
         </div>
     </form>
-    </div>
 </body>
 </html>
