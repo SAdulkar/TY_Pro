@@ -130,7 +130,7 @@ body{
            </li> 
 
            <li>
-            <a href="#">
+            <a href="leave_acc">
                 <i class="fas fa-tachometer-alt"></i>
                 <span>Leave</span>
             </a>
@@ -141,6 +141,17 @@ body{
         <div class="header">
             <h2>Dashboard</h2>
             <img src="{% static 'images/logo.png' %}">
+            <div>
+              {% if name %}
+              
+                <p>Hiii {{name}}</p>
+                <a href="/logout">Logout</a>
+              
+              
+        
+              {% endif %}
+              
+            </div> 
         </div>
 
         <div class="tabular-data">

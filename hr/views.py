@@ -35,8 +35,19 @@ def admin_login(request):
    return render(request,'admin_login.html',context)
 
 def dash(request):
-     employee=Employee.objects.all()
-     return render(request,'admin_login.html',{'employee':employee})
+    employee=Employee.objects.all()
+
+    cookie = request.COOKIES.get('username') 
+    print('cookie',cookie)
+    try:
+      emp_obj = Employee.objects.get(email=cookie)
+    except Exception as e:
+      print(e)
+    context = {
+      'name':f"{emp_obj.username}"
+   }
+    
+    return render(request,'admin_login.html',{'employee':employee}, context)
 
 def edit_employee(request):
     id = request.GET.get('id')
@@ -50,6 +61,14 @@ def delete(request):
      employee=Employee.objects.get(id=id)
      employee.delete()
      return redirect("/hr/admin_login")
+
+def leave_acc(request):
+   leave = Employee.objects.all()
+   context = {
+       'leaverequest':leave
+   }
+   return render(request,'leave_acc.html',context)
+
 
 def leavepending(request):
     leave = LeaveRequest.objects.all().order_by('-id')

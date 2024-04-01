@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee List</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"/>
+    <link rel = "stylesheet" type = "text/css" href = "https://cdn.datatables.net/1.12.0/css/jquery.dataTables.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1"/>
+</head>
+<style>
+
+</style>
+<body>
+    <div class="tabular-data">
+        <h3>Employee's Leave Data</h3>
+        <div class="table-content">
+            <table class="table table-bordered">
+                <thead class="thead-dark">
+                <tr>
+                    <th>User Name</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Reason</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                {% for employees in employee %}
+                <tr>
+                    <td>{{employees.username}}</td>
+                    <td>{{employees.leave_date_from }}</td>
+                    <td>{{employees.leave_date_to}}</td>
+                    <td>{{employees.reason}}</td>
+                    <td><a href="/hr/edit/?id={{ employees.id }}" class="btn btn-primary">Accept</a>
+                    <a href="/hr/delete/?id={{ employees.id }}" class="btn btn-danger">Reject</a></td>  
+                </tr>  
+            {% endfor %}
+                </table>
+        </div>
+    </div>
+</body>

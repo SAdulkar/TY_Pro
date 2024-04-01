@@ -7,5 +7,5 @@ urlpatterns = [
     path('admin_login/',views.admin_login),
     path('edit/',views.edit_employee),
     path('delete/',views.delete),
-
+    path('leave_acc/',views.leave_acc),
 ]
