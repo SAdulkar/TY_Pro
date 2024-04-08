@@ -1,6 +1,7 @@
 from django.shortcuts import render,HttpResponse,redirect
 from employee.models import Employee
 from employee.models import LeaveRequest
+from employee.models import Contact
 from django.core.mail import BadHeaderError, send_mail
 from django.contrib import messages
 from django.urls import reverse
@@ -45,7 +46,19 @@ def about(request):
    return render(request,'about.html')
 
 def contact(request):
-   return render(request,'contact.html')
+   cookie = request.COOKIES.get('username') 
+   if request.method=='POST':
+      email = request.POST.get('email')
+      message = request.POST.get('message')
+
+      try:
+         conc = Contact(username=cookie, email=email, message=message)
+         conc.save()
+         return HttpResponse("Thanks for Contact US!!")
+      except Exception as e:
+         print(e)
+
+   return render(request,'contact.html',{'name':cookie})
 
 def login(request):
     # cookie = request.COOKIES.get('login') 

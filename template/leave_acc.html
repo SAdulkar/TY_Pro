@@ -10,7 +10,18 @@
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1"/>
 </head>
 <style>
-
+.tabular-data{
+  background: #fff;
+  margin-top: 1rem;
+  border-radius: 10px;
+  padding: 2rem;
+}
+.tabular-data h3{
+  color: black;
+}
+.table-content{
+  width: 100%;
+}
 </style>
 <body>
     <div class="tabular-data">
@@ -26,17 +37,18 @@
                     <th>Action</th>
                 </tr>
                 </thead>
-                {% for employees in employee %}
+                {% for data in leave %}
                 <tr>
-                    <td>{{employees.username}}</td>
-                    <td>{{employees.leave_date_from }}</td>
-                    <td>{{employees.leave_date_to}}</td>
-                    <td>{{employees.reason}}</td>
-                    <td><a href="/hr/edit/?id={{ employees.id }}" class="btn btn-primary">Accept</a>
-                    <a href="/hr/delete/?id={{ employees.id }}" class="btn btn-danger">Reject</a></td>  
+                    <td>{{data.username}}</td>
+                    <td>{{data.leave_date_from }}</td>
+                    <td>{{data.leave_date_to}}</td>
+                    <td>{{data.reason}}</td>
+                    <td><a href="" class="btn btn-primary">Accept</a>
+                    <a href="" class="btn btn-danger">Reject</a></td>  
                 </tr>  
-            {% endfor %}
+                {% endfor %}
                 </table>
         </div>
     </div>
+    <button type="submit" href="/hr/admin_login">Home</button>
 </body>

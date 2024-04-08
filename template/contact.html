@@ -62,7 +62,9 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-
+.btn-primary{
+  background: rgba(113, 99, 186, 255);
+}
 @media only screen and (max-width:600px){
     .container{
         width: 100%;
@@ -77,24 +79,23 @@
     <div class="container">
         <div class="row">
             <div class="col-md-7">
-              <h4>Get in touch</h4>
-                <div class="mb-3">
-                    <label for="formGroupExampleInput" class="form-label">Name</label>
-                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Enter your name">
+              <form  method="post">
+                {% csrf_token %}
+                <h4>Get in touch</h4>
+                  <div class="mb-3">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" id="username" name="username" placeholder="Enter your name" required>
                   </div>
                   <div class="mb-3">
-                    <label for="formGroupExampleInput2" class="form-label">Email</label>
-                    <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Enter your email">
+                    <label for="email">Email</label>
+                    <input type="text" class="form-control" id="email" name="email" placeholder="Enter your email" required>
                   </div>
                   <div class="mb-3">
-                    <label for="formGroupExampleInput2" class="form-label">Contact Number</label>
-                    <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Enter your number">
-                  </div>
-                  <div class="mb-3">
-                    <label for="exampleFormControlTextarea1" class="form-label">Message</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    <label for="message">Message</label>
+                    <textarea class="form-control" id="message" name="message" placeholder="Enter your message"></textarea>
                   </div>
                   <button class="btn btn-primary">Submit</button>
+              </form>
             </div>
             <div class="col-md-5 ">
               <h4>Contact us</h4><hr>
@@ -104,12 +105,8 @@
                     <p >Address: At/Post/Taluka-Vaibhavwadi, Dist-Sindhudurg</p>
                   </div><hr>
                   <div class="d-flex">
-                    <i class="bi bi-telephone-fill"></i>
-                    <p>Contact :- 9024429867</p>
-                  </div><hr>
-                  <div class="d-flex">
                     <i class="bi bi-envelope-fill"></i>
-                    <p>Email:- siddhi@gmail.com</p>
+                    <p>Email:- siddhiadulkar@gmail.com</p>
                   </div><hr>
                   <div class="d-flex">
                     <i class="bi bi-browser-chrome"></i>

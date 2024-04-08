@@ -63,11 +63,8 @@ def delete(request):
      return redirect("/hr/admin_login")
 
 def leave_acc(request):
-   leave = Employee.objects.all()
-   context = {
-       'leaverequest':leave
-   }
-   return render(request,'leave_acc.html',context)
+   leave = LeaveRequest.objects.all()
+   return render(request,'leave_acc.html', {'leave':leave})
 
 
 def leavepending(request):

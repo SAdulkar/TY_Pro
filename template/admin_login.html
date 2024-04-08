@@ -140,7 +140,7 @@ body{
     <div class="main-content">
         <div class="header">
             <h2>Dashboard</h2>
-            <img src="{% static 'images/logo.png' %}">
+            <img src="{% static 'logo.png' %}">
             <div>
               {% if name %}
               
@@ -154,10 +154,17 @@ body{
             </div> 
         </div>
 
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">Leave Request</h5>
+            <a href="#" class="btn btn-primary">Check</a>
+          </div>
+        </div>
+
         <div class="tabular-data">
             <h3>Employee's Data</h3>
             <div class="table-content">
-                <table class="table table-bordered">
+                <table class="table table-striped">
                     <thead class="thead-dark">
                     <tr>
                         <th>First Name</th>

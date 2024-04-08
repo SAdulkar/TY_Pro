@@ -12,6 +12,12 @@ class Employee(models.Model):
 
 #add extra fields
     
+class Contact(models.Model):
+    username = models.CharField(max_length=100)
+    email = models.EmailField(unique=True)
+    message=models.TextField()
+
+    
 class LeaveRequest(models.Model):
     username = models.CharField(max_length=100)
     leave_date_from = models.DateField()
