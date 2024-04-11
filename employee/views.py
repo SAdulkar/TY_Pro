@@ -48,11 +48,12 @@ def about(request):
 def contact(request):
    cookie = request.COOKIES.get('username') 
    if request.method=='POST':
+      username = request.POST.get('username')
       email = request.POST.get('email')
       message = request.POST.get('message')
 
       try:
-         conc = Contact(username=cookie, email=email, message=message)
+         conc = Contact(username=username, email=email, message=message)
          conc.save()
          return HttpResponse("Thanks for Contact US!!")
       except Exception as e:

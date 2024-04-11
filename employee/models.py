@@ -14,7 +14,7 @@ class Employee(models.Model):
     
 class Contact(models.Model):
     username = models.CharField(max_length=100)
-    email = models.EmailField(unique=True)
+    email = models.EmailField()
     message=models.TextField()
 
     
