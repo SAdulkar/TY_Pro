@@ -19,7 +19,11 @@ def login(request):
        user = Hr.objects.filter(email=username,password=password)
        print(len(user))
        if len(user)==1:
-           return redirect('/hr/admin_login')
+        response = redirect('/hr/admin_login')
+        response.set_cookie('login', 'true')
+        response.set_cookie('username', username)
+        return response
+        return redirect('/hr/admin_login')
                 
     else:
             # Return an invalid login error message
@@ -29,9 +33,13 @@ def login(request):
 
 def admin_login(request):
    emp = Employee.objects.all()
+   cookie = request.COOKIES.get('username') 
+   print(cookie)
+   hr = Hr.objects.get(email=cookie)
    context = {
-       'employee':emp
+       'hr':hr.username
    }
+
    return render(request,'admin_login.html',context)
 
 def dash(request):
