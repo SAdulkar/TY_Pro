@@ -10,5 +10,6 @@ urlpatterns = [
     path('emp_dash/',views.emp_dash,name='emp_dash'),
     path('leave_req/',views.leave_req,name='leave_req'),
     path('regi/',views.regi,name='regi'),
-    path('leave_req/',views.leave_req)
+    path('leave_req/',views.leave_req),
+    
 ]

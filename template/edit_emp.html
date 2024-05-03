@@ -9,6 +9,8 @@
     <h5>Edit employee Details</h5>
 
     {% for x in employee %}
+    <form  method="post">
+        {% csrf_token %}
         <label>Employee Name:</label>  
         <input type="text" class="form-control" name="username" required maxlength="20" value="{{ x.username }}"/>   
         
@@ -17,8 +19,36 @@
 
         <label>Email:</label>  
         <input type="email" class="form-control" name="email" required maxlength="254" value="{{ x.email }}" />
-
-        <button type="submit" class="btn btn-success btn-lg"><a href="/hr/dash">Update</a> </button> 
+        <div class="mb-3">
+            <label for="phone_number" class="form-label">Phone Number</label>
+            <input type="text" class="form-control" id="phone_number" name="phone_number" required>
+          </div>
+          <div class="mb-3">
+            <label for="date_of_birth" class="form-label">Date of Birth</label>
+            <input type="date" class="form-control" id="date_of_birth" name="date_of_birth" required>
+          </div>
+          <div class="mb-3">
+            <label for="address" class="form-label">Address</label>
+            <textarea class="form-control" id="address" name="address" required></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="department" class="form-label">Department</label>
+            <input type="text" class="form-control" id="department" name="department" required>
+          </div>
+          <div class="mb-3">
+            <label for="position" class="form-label">Position</label>
+            <input type="text" class="form-control" id="position" name="position" required>
+          </div>
+          <div class="mb-3">
+            <label for="salary" class="form-label">Salary</label>
+            <input type="number" class="form-control" id="salary" name="salary" step="0.01" required>
+          </div>
+          <div class="mb-3">
+            <label for="hired_date" class="form-label">Hired Date</label>
+            <input type="date" class="form-control" id="hired_date" name="hired_date" required>
+          </div>
+        <button type="submit" class="btn btn-success btn-lg">Update </button> 
+    </form>
     {% endfor %}
     
 </body>

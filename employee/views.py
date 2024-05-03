@@ -90,6 +90,7 @@ def login(request):
     return render(request,'login.html')
 
 
+
 def signup(request):
    if request.method=='POST':
       username = request.POST.get('username')

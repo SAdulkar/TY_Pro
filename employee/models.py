@@ -2,13 +2,17 @@ from django.db import models
 
 
 class Employee(models.Model):
-    username = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100, default='SOME STRING')
-    email = models.EmailField(unique=True)
-    password = models.TextField(default='password')
-    # phone = models.CharField(max_length=20, blank=True, null=True)
-    # department = models.CharField(max_length=100)
-    # position = models.CharField(max_length=100)
+    username = models.CharField(max_length=100, null=True, blank=True)
+    last_name = models.CharField(max_length=100, default='SOME STRING', null=True, blank=True)
+    email = models.EmailField(unique=True, null=True, blank=True)
+    password = models.TextField(default='password', null=True, blank=True)
+    phone_number = models.CharField(max_length=15, null=True, blank=True)
+    date_of_birth = models.DateField(null=True, blank=True)
+    address = models.TextField(null=True, blank=True)
+    department = models.CharField(max_length=100, null=True, blank=True)
+    position = models.CharField(max_length=100, null=True, blank=True)
+    salary = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    hired_date = models.DateField(null=True, blank=True)
 
 #add extra fields
     
