@@ -73,6 +73,11 @@ body{
 .menu a i{
   font-size: 1.2rem;
 }
+.menu img{
+  margin-bottom: 10px;
+  width: 40px;
+  height: 40px;
+}
 .main-content{
   position: relative;
   background: #fff;
@@ -117,7 +122,7 @@ body{
         <ul class="menu">
            <li>
             <a href="/hr/admin_login">
-                <i class="fas fa-tachometer-alt"></i>
+              <img src="{% static 'home.png' %}">
                 <span>Home</span>
             </a>
            </li> 
@@ -131,8 +136,14 @@ body{
 
            <li>
             <a href="/hr/leave_acc">
-                <i class="fas fa-tachometer-alt"></i>
+              <img src="{% static 'leave.png' %}">
                 <span>Leave</span>
+            </a>
+           </li> 
+           <li>
+            <a href="/hr/leave_acc">
+              <img src="{% static 'info.png' %}">
+                <span>Info</span>
             </a>
            </li> 
         </ul>
@@ -140,7 +151,7 @@ body{
     <div class="main-content">
         <div class="header">
             <h2>Dashboard</h2>
-            <img src="{% static 'logo.png' %}">
+            <!--<img src="{% static 'logo.png' %}">-->
             <div>
               {% if hr %}
               
@@ -178,6 +189,11 @@ body{
                         <td>{{employees.username}}</td>
                         <td>{{employees.last_name}}</td>
                         <td>{{employees.email}}</td>
+                        <td>{{employees.phone_number}}</td>
+                        <td>{{employees.date_of_birth}}</td>
+                        <td>{{employees.department}}</td>
+                        <td>{{employees.position}}</td>
+
                         <td><a href="/hr/edit/?id={{ employees.id }}" class="btn btn-primary">Edit</a>
                         <a href="/hr/delete/?id={{ employees.id }}" class="btn btn-danger">Delete</a></td>  
                     </tr>  

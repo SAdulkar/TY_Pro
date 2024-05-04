@@ -11,6 +11,116 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <style>
+  @import url('https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+body{
+  display: flex;
+}
+.sidebar{
+  position: sticky;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 110px;
+  height: 100vh;
+  padding: 0 1.7rem;
+  color: #fff;
+  overflow: hidden;
+  transition: all 0.5s linear;
+  background: rgba(113, 99, 186, 255);
+}
+.sidebar:hover{
+  width: 240px;
+  transition: 0.5s;
+}
+.logo{
+  height: 80px;
+  padding: 16px;
+}
+.menu{
+  height: 88%;
+  position: relative;
+  list-style: none;
+  padding: 0;
+}
+.menu li{
+  padding: 1rem;
+  margin: 8px 0;
+  border-radius: 8px;
+  transition: all 0.5s ease-in-out;
+}
+.menu li:hover{
+  background: #e0e0e058;
+}
+.menu a{
+  color: #fff;
+  font-size: 14px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+.menu a span{
+  overflow: hidden;
+}
+.menu a i{
+  font-size: 1.2rem;
+}
+.menu img{
+  margin-bottom: 10px;
+  width: 40px;
+  height: 40px;
+}
+.menu img{
+  margin-bottom: 10px;
+  width: 40px;
+  height: 40px;
+}
+.main-content{
+  position: relative;
+  background: #fff;
+  width: 100%;
+  padding: 1rem;
+}
+.header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  background: rgba(237, 237, 237);
+  border-radius: 10px;
+  padding: 10px 2rem;
+  margin-bottom: 1rem;
+}
+.header h2{
+  color: black;
+}
+.main-content img{
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  border-radius: 10px;
+}
+.tabular-data{
+  background: #fff;
+  margin-top: 1rem;
+  border-radius: 10px;
+  padding: 2rem;
+}
+.tabular-data h3{
+  color: black;
+}
+.table-content{
+  width: 100%;
+}
 .tabular-data{
   background: #fff;
   margin-top: 1rem;
@@ -25,7 +135,52 @@
 }
 </style>
 <body>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <div class="sidebar">
+    <div class="logo"></div>
+    <ul class="menu">
+       <li>
+        <a href="/hr/admin_login">
+          <img src="{% static 'home.png' %}">
+            <span>Home</span>
+        </a>
+       </li> 
+
+       <!-- <li>
+        <a href="#">
+            <i class="fas fa-tachometer-alt"></i>
+            <span>Salary</span>
+        </a>
+       </li>  -->
+
+       <li>
+        <a href="/hr/leave_acc">
+          <img src="{% static 'leave.png' %}">
+            <span>Leave</span>
+        </a>
+       </li> 
+       <li>
+        <a href="/hr/leave_acc">
+          <img src="{% static 'info.png' %}">
+            <span>Info</span>
+        </a>
+       </li> 
+    </ul>
+</div>
+<div class="main-content">
+    <div class="header">
+        <h2>Dashboard</h2>
+        <!--<img src="{% static 'logo.png' %}">-->
+        <div>
+          {% if hr %}
+          
+            <p>Hiii {{hr}}</p>
+            <a href="/logout">Logout</a>  
+    
+          {% endif %}
+          
+        </div> 
+      </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <div class="tabular-data">
         <h3>Employee's Leave Data</h3>
         <div class="table-content">
@@ -52,5 +207,5 @@
                 </table>
         </div>
     </div>
-    <a type="submit" class="btn btn-outline-primary" href="/hr/admin_login">Home</a>
+</div>
 </body>

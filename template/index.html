@@ -76,10 +76,17 @@ a.active,a:hover{
     margin-top: 10px;
 
 }
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    margin: 65px auto;
+    }
 .image{
     flex: 1;
     width: 600px;
-    margin-right: 100%;
+    margin: auto;
     
 }
 img{
@@ -103,13 +110,15 @@ img{
                     
                 </ul>
         </nav>
-        <div class="content">
-            <h1>Effortlessly<br><span>manage your global employee</span> Data</h1>
-            <p>Build a secure, comprehensive, and scalable database to get a <br>better understanding of your workforce
-            <br></p>   
-        </div>
-        <div class="image">
-            <img src="{% static 'emp.png' %}">
+        <div class="container">
+            <div class="content">
+                <h1>Effortlessly<br><span>manage your global employee</span> Data</h1>
+                <p>Build a secure, comprehensive, and scalable database to get a <br>better understanding of your workforce
+                <br></p>   
+            </div>
+            <div class="image">
+                <img src="{% static 'emp.png' %}">
+            </div>
         </div>
     </form>
 </body>

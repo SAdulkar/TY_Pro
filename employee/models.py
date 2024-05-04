@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Employee(models.Model):
-    username = models.CharField(max_length=100, null=True, blank=True)
+    username = models.CharField(max_length=90, null=True, blank=True)
     last_name = models.CharField(max_length=100, default='SOME STRING', null=True, blank=True)
     email = models.EmailField(unique=True, null=True, blank=True)
     password = models.TextField(default='password', null=True, blank=True)

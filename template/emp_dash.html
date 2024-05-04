@@ -72,6 +72,11 @@ body{
 .menu a i{
   font-size: 1.2rem;
 }
+.menu img{
+  margin-bottom: 10px;
+  width: 40px;
+  height: 40px;
+}
 .main-content{
   position: relative;
   background: #fff;
@@ -109,22 +114,21 @@ body{
         <ul class="menu">
            <li>
             <a href="/employee/emp_dash/">
-                <i class="fas fa-tachometer-alt"></i>
+              <img src="{% static 'home.png' %}">
                 <span>Home</span>
             </a>
-           </li> 
-
-           <li>
-            <a href="/employee/">
-                <i class="fas fa-tachometer-alt"></i>
-                <span>Salary</span>
-            </a>
-           </li> 
+           </li>
 
            <li>
             <a href="/employee/leave_req">
-              <i class="fas fa-tachometer-alt"></i>
+              <img src="{% static 'leave.png' %}">
                 <span>Leave</span>
+            </a>
+           </li> 
+           <li>
+            <a href="/hr/leave_acc">
+              <img src="{% static 'info.png' %}">
+                <span>Info</span>
             </a>
            </li> 
         </ul>
